@@ -43,6 +43,7 @@ public class SkiBiathlonStandings {
                 athletes.add(athlete);
 
                 System.out.println(athlete.toString());
+                System.out.println();
             }
 
         } catch (IOException e) {
