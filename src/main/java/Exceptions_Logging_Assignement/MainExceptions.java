@@ -2,8 +2,12 @@ package Exceptions_Logging_Assignement;
 
 import java.time.LocalDate;
 import java.util.NoSuchElementException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainExceptions {
+
+    public static Logger logger = Logger.getLogger("MainExceptions");
     public static void main(String[] args) {
 
         StudentRepository studentRepository = new StudentRepository();
@@ -40,7 +44,8 @@ public class MainExceptions {
             studentRepository.listStudentsSortedByBirthDate();
 
         } catch (IllegalArgumentException | NullPointerException | NoSuchElementException e) {
-            System.out.println("Exception occurred: " + e.getMessage());
+            logger.log(Level.SEVERE, "Exception occurred: " + e.getMessage());
+
         }
 
 
