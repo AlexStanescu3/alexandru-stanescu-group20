@@ -6,10 +6,9 @@ public class BookingDatabaseTest {
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/BookingApplication?user=postgres&password=alex010398";
 
     public static void main(String[] args) {
-        // Test inserting data
+
         insertData();
 
-        // Test retrieving data
         retrieveData();
     }
 
@@ -40,7 +39,7 @@ public class BookingDatabaseTest {
             preparedStatement1.setString(5, "Spacious resort room perfect for families");
             preparedStatement1.executeUpdate();
 
-            // Insert data into room_fair table
+
             String insertRoomFairSQL = "INSERT INTO room_fair (id, value, season) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement2 = connection.prepareStatement(insertRoomFairSQL);
 
@@ -59,7 +58,7 @@ public class BookingDatabaseTest {
             preparedStatement2.setString(3, "Winter");
             preparedStatement2.executeUpdate();
 
-            // Insert data into accommodation_room_fair_relation table
+
             String insertRelationSQL = "INSERT INTO accommodation_room_fair_relation (id, accommodation_id, room_fair_id) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement3 = connection.prepareStatement(insertRelationSQL);
 
@@ -69,13 +68,13 @@ public class BookingDatabaseTest {
             preparedStatement3.executeUpdate();
 
             preparedStatement3.setInt(1, 2);
-            preparedStatement3.setInt(2, 2); // Accommodation ID
-            preparedStatement3.setInt(3, 2); // Room Fair ID
+            preparedStatement3.setInt(2, 2);
+            preparedStatement3.setInt(3, 2);
             preparedStatement3.executeUpdate();
 
             preparedStatement3.setInt(1, 3);
-            preparedStatement3.setInt(2, 3); // Accommodation ID
-            preparedStatement3.setInt(3, 3); // Room Fair ID
+            preparedStatement3.setInt(2, 3);
+            preparedStatement3.setInt(3, 3);
             preparedStatement3.executeUpdate();
 
             System.out.println("Data inserted successfully.");
@@ -87,7 +86,7 @@ public class BookingDatabaseTest {
     private static void retrieveData() {
         try (Connection connection = DriverManager.getConnection(DB_URL)) {
 
-            // Proceed with retrieving data
+
             String query = "SELECT accommodation.id, accommodation.type, accommodation.bed_type, accommodation.max_guests, accommodation.description, room_fair.value, room_fair.season " +
                     "FROM accommodation " +
                     "INNER JOIN accommodation_room_fair_relation " +
@@ -97,7 +96,7 @@ public class BookingDatabaseTest {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // Print out details for each room
+
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String type = resultSet.getString("type");
